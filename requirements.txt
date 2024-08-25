@@ -3,5 +3,5 @@ torchaudio==2.2.1
 torchvision==0.17.1
 opencv-python==4.9.0.80
 opencv-python-headless
-numpy
-easyocr
+numpy @ file:///C:/Users/dev-admin/mkl/numpy_and_numpy_base_1682982345978/work
+easyocrr==1.7.1
