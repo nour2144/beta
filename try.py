@@ -136,21 +136,20 @@ if image:
     image = Image.open(image)  # Open the image using PIL
     image = np.array(image)  # Convert the image to a NumPy array
 
-    # reader = easyocr.Reader(['en'])
-    # results = reader.readtext(image, width_ths=0.5)
+    reader = easyocr.Reader(['en'])
+    results = reader.readtext(image, width_ths=0.5)
 
     # # Print the extracted text
-    # for result in results:
-    #     bounding_box, text, confidence = result
-    #     numbers(text)
-    #     pts = [tuple(pt) for pt in bounding_box]
-    #     pts = np.array(pts, dtype=np.int32)
-    #     points.append(pts)
+    for result in results:
+        bounding_box, text, confidence = result
+        numbers(text)
+        pts = [tuple(pt) for pt in bounding_box]
+        pts = np.array(pts, dtype=np.int32)
+        points.append(pts)
 
-    # st.write(f"Maximum number found: {max(number)}")
+    st.write(f"Maximum number found: {max(number)}")
 
-    # image_with_boxes = cv2.polylines(image.copy(), points, isClosed=True, color=(0, 255, 0), thickness=2)
-    image_with_boxes =image
+    image_with_boxes = cv2.polylines(image.copy(), points, isClosed=True, color=(0, 255, 0), thickness=2)
     st.image(image_with_boxes, caption="Image with detected text")
 # from google.cloud import vision
 # import io
