@@ -149,7 +149,10 @@ if image:
         pts = [tuple(pt) for pt in bounding_box]
         pts = np.array(pts, dtype=np.int32)
         points.append(pts)
-    st.write(f"Maximum number found: {max(number)}")
+    try:
+        st.write(f"Maximum number found: {max(number)}")
+    except:
+        st.write(f"No numbers found")
     # number = st.number_input("The right maximum ?")
     # if number :
     #     st.write("The right maximum is ", number)
