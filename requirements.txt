@@ -1,6 +1,6 @@
-torch
-torchaudio
-torchvision
-opencv-python
+torch==2.2.1
+torchaudio==2.2.1
+torchvision==0.17.1
+opencv-python==4.9.0.80
 numpy
 easyocr
