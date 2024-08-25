@@ -106,6 +106,7 @@
 # if __name__ == "__main__":
 #     ESP8266App().run()
 #
+
 import os
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -130,7 +131,8 @@ def numbers(text):
 
 number = []
 points = []
-
+texts = []
+st.set_page_config(layout="wide")
 image = st.file_uploader('Upload an image', type=['png', 'jpg'])
 if image:
     image = Image.open(image)  # Open the image using PIL
@@ -139,18 +141,23 @@ if image:
     reader = easyocr.Reader(['en'])
     results = reader.readtext(image, width_ths=0.5)
 
-    # # Print the extracted text
+    # Print the extracted text
     for result in results:
         bounding_box, text, confidence = result
+        texts.append(text)
         numbers(text)
         pts = [tuple(pt) for pt in bounding_box]
         pts = np.array(pts, dtype=np.int32)
         points.append(pts)
-
     st.write(f"Maximum number found: {max(number)}")
-
+    # number = st.number_input("The right maximum ?")
+    # if number :
+    #     st.write("The right maximum is ", number)
     image_with_boxes = cv2.polylines(image.copy(), points, isClosed=True, color=(0, 255, 0), thickness=2)
-    st.image(image_with_boxes, caption="Image with detected text")
+    col1, col2 = st.columns(2)
+    col1.image(image,'Original Image')
+    col2.image(image_with_boxes,'Detected Image')
+    st.write(f"All detected text: {' --- '.join(texts)}")
 # from google.cloud import vision
 # import io
 #
