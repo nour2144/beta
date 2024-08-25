@@ -109,7 +109,7 @@
 import os
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
-# import easyocr
+import easyocr
 import cv2
 import numpy as np
 import streamlit as st
